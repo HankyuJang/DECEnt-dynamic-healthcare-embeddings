@@ -87,20 +87,68 @@ Use that feature set, then train the model w/ repetition.
 ./evaluate_baseline_models_for_application_rf_logit.sh
 ```
 
-## Plotting results of Application 1-3
+### RNN, LSTM
+
+script: `evaluate_RNN_for_application.py`
+```
+./evaluate_RNN0.sh
+./evaluate_RNN1.sh
+./evaluate_RNN2.sh
+./evaluate_RNN3.sh
+```
+
+### node2vec, deepwalk
+
+Trained node2vec and deepwalk using scripts from snap.
+```
+python prepare_interactions_for_net_emb.py # this script generates data to train node2vec, deepwalk, and CTDNE
+python process_node2vec_embeddings.py
+./evaluate_node2vec_embeddings_rf_logit.sh
+./evaluate_deepwalk_MLP.sh
+./evaluate_node2vec_BFS.sh
+./evaluate_node2vec_DFS.sh
+```
+
+### CTDNE
+CTDNE was trained using external script. Following scripts load the learned embeddings in training Application1-3
+```
+python process_CTDNE_embeddings.py
+./evaluate_CTDNE_embeddings_MLP0.sh
+./evaluate_CTDNE_embeddings_MLP1.sh
+./evaluate_CTDNE_embeddings_MLP2.sh
+./evaluate_CTDNE_embeddings_MLP3.sh
+./evaluate_CTDNE_embeddings_rf_logit.sh
+```
+
+### JODIE
+
+```
+./evaluate_jodie_MLP0.sh
+./evaluate_jodie_MLP1.sh
+./evaluate_jodie_MLP2.sh
+./evaluate_jodie_MLP3.sh
+./evaluate_jodie_rf_logit.sh
+```
+
+## Other scripts... 
+
+### Plotting results of Application 1-3
 
 ROC curves for MICU transfer
-
 
 Use the following to plot the ROC curves. plots saved in `plots/roc_curve/`
 ```
 python EXP2_plot_ROC.py
-
 ```
 
-## Generate Applicaiton 1-3 result tables in paper 
+### Generate Applicaiton 1-3 result tables in paper 
 
 ```
 python gen_result_tables.py
 ```
 
+### Generate data summary table
+
+```
+python gen_data_statistics.py
+```
