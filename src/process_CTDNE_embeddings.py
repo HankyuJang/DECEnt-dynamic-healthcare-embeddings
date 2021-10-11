@@ -55,9 +55,18 @@ if __name__ == "__main__":
 
     print("Procedding {} embeddings...".format(method))
     learned_emb_list = []
+
+    df_interactions["user_idx"] = df_interactions["user_id"].map(id_idx_mapping)
     for t in range(min_timestamp, max_timestamp+1):
+        # Get the users in each day. 
+        df_temp = df_interactions[df_interactions.timestamp==t]
+        users_in_the_day = df_temp.user_idx.unique()
+
         filename = "~/CTDNE/emb/day{}.emb".format(t)
         learned_emb = pd.read_csv(filename, sep=" ", header=None, skiprows=1)
+        # filter in only those that are actually in the day
+        learned_emb = learned_emb[learned_emb[0].isin(users_in_the_day)]
+        
         learned_emb.insert(value=t, loc=1, column="timestamp")
         learned_emb_list.append(learned_emb)
 
@@ -82,6 +91,6 @@ if __name__ == "__main__":
     folder=method
     network="patient_DECEnt_PF_2010-01-01"
 
-    df_patient_embedding_per_day.to_csv("../data/{}/{}/df_patient_embedding_per_day.csv".format(folder, network), index=False)
+    # df_patient_embedding_per_day.to_csv("../data/{}/{}/df_patient_embedding_per_day.csv".format(folder, network), index=False)
     df_patient_embedding.to_csv("../data/{}/{}/df_patient_embedding.csv".format(folder, network), index=False)
 
