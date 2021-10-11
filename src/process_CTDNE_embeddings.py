@@ -60,8 +60,6 @@ if __name__ == "__main__":
         learned_emb = pd.read_csv(filename, sep=" ", header=None, skiprows=1)
         learned_emb.insert(value=t, loc=1, column="timestamp")
         learned_emb_list.append(learned_emb)
-        if t == 2:
-            break
 
     df_embedding = pd.concat([df for df in learned_emb_list], ignore_index=True)
 
