@@ -1,5 +1,7 @@
 # Dynamic Healthcare Embeddings for Improving Patient Care (DECEnt)
 
+__Paper__: H. Jang, S. Lee, D.M.H. Hasan, P.M. Polgreen, S.V. Pemmaraju, B. Adhikari, "Dynamic Healthcare Embeddings for Improving Patient Care," _2022 IEEE/ACM International Conference on Advances in Social Networks Analysis and Mining (ASONAM)_, 2022.
+
 ## Software requirements
 - Python3
 - PyTorch # GPU
